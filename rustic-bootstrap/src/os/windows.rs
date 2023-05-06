@@ -10,8 +10,8 @@ use windows::{
             LibraryLoader::{GetModuleHandleW, GetProcAddress},
             Memory::{VirtualAllocEx, MEM_COMMIT, MEM_RESERVE, PAGE_EXECUTE_READWRITE},
             Threading::{
-                CreateProcessW, CreateRemoteThread, WaitForSingleObject, CREATE_SUSPENDED,
-                INFINITE, PROCESS_INFORMATION, STARTUPINFOW,
+                CreateProcessW, CreateRemoteThread, WaitForSingleObject, INFINITE,
+                PROCESS_CREATION_FLAGS, PROCESS_INFORMATION, STARTUPINFOW,
             },
         },
     },
@@ -20,7 +20,7 @@ use windows::{
 pub fn main() {
     let args = std::env::args().collect::<Vec<String>>();
     let isaac_path = find_isaac_path(&args).expect("Failed to find 'isaac-ng.exe'!");
-    let inject_dll = find_inject_dll(&args).expect("Failed to find 'isaac-inject.dll'!");
+    let inject_dll = find_inject_dll(&args).expect("Failed to find 'rustic-inject.dll'!");
 
     unsafe {
         start(&isaac_path, inject_dll);
@@ -28,8 +28,8 @@ pub fn main() {
 }
 
 fn find_isaac_path(args: &Vec<String>) -> Result<String, ()> {
-    if let Ok(path) = std::env::var("ISAAC_PATH") {
-        println!("ISAAC_PATH environment variable found: {}", path);
+    if let Ok(path) = std::env::var("RUSTIC_ISAAC_PATH") {
+        println!("RUSTIC_ISAAC_PATH environment variable found: {}", path);
         return Ok(path);
     }
 
@@ -63,14 +63,14 @@ fn find_isaac_path(args: &Vec<String>) -> Result<String, ()> {
 }
 
 fn find_inject_dll(_args: &Vec<String>) -> Result<String, ()> {
-    if let Ok(path) = std::env::var("ISAAC_INJECT_DLL") {
-        println!("ISAAC_INJECT_DLL environment variable found: {}", path);
+    if let Ok(path) = std::env::var("RUSTIC_INJECT_DLL") {
+        println!("RUSTIC_INJECT_DLL environment variable found: {}", path);
         return Ok(path);
     }
 
-    println!("Searching for 'isaac-inject.dll' in current directory...");
+    println!("Searching for 'rustic-inject.dll' in current directory...");
     let mut current_dir = std::env::current_dir().unwrap();
-    current_dir.push("isaac_inject.dll");
+    current_dir.push("rustic-inject.dll");
     if current_dir.exists() {
         return Ok(current_dir.to_str().unwrap().to_string());
     }
@@ -94,7 +94,7 @@ unsafe fn start(executable: &String, inject_dll: String) {
         None,
         None,
         false,
-        CREATE_SUSPENDED,
+        PROCESS_CREATION_FLAGS(0),
         None,
         None,
         &mut startup_info,

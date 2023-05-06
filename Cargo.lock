@@ -62,23 +62,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "isaac-bootstrap"
-version = "0.1.0"
-dependencies = [
- "windows 0.48.0",
-]
-
-[[package]]
-name = "isaac-inject"
-version = "0.1.0"
-dependencies = [
- "retour",
- "retour-utils",
- "rlua",
- "windows 0.48.0",
-]
-
-[[package]]
 name = "lazy_static"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -247,6 +230,23 @@ dependencies = [
  "cc",
  "libc",
  "pkg-config",
+]
+
+[[package]]
+name = "rustic-bootstrap"
+version = "0.1.0"
+dependencies = [
+ "windows 0.48.0",
+]
+
+[[package]]
+name = "rustic-inject"
+version = "0.1.0"
+dependencies = [
+ "retour",
+ "retour-utils",
+ "rlua",
+ "windows 0.48.0",
 ]
 
 [[package]]

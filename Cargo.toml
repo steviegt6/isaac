@@ -1,2 +1,2 @@
 [workspace]
-members = ["isaac-bootstrap", "isaac-inject"]
+members = ["rustic-bootstrap", "rustic-inject"]
