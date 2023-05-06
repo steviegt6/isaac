@@ -1,0 +1,2 @@
+[workspace]
+members = ["isaac-bootstrap", "isaac-inject"]
