@@ -12,7 +12,7 @@ mod user32 {
     use windows::{core::PCWSTR, w, Win32::Foundation::HWND};
 
     #[hook(unsafe extern "system" MessageBoxWHook, symbol = "MessageBoxW")]
-    fn MessageBoxWDetour(hwnd: HWND, text: PCWSTR, _caption: PCWSTR, u_type: u32) -> i32 {
+    fn message_box_w_detour(hwnd: HWND, text: PCWSTR, _caption: PCWSTR, u_type: u32) -> i32 {
         let caption = w!("Nope, detoured!");
         unsafe { MessageBoxWHook.call(hwnd, text, caption, u_type) }
     }
