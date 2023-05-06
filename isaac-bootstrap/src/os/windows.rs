@@ -4,7 +4,7 @@ use windows::{
     core::{HSTRING, PCWSTR, PWSTR},
     s, w,
     Win32::{
-        Foundation::{GetLastError, NO_ERROR},
+        Foundation::NO_ERROR,
         System::{
             Diagnostics::Debug::WriteProcessMemory,
             LibraryLoader::{GetModuleHandleW, GetProcAddress},
@@ -82,12 +82,9 @@ unsafe fn start(executable: &String, inject_dll: String) {
     println!("Using path: {}", executable);
     println!("Using inject dll: {}", inject_dll);
 
-    // use windows-rs CreateProcessA
     let mut startup_info = STARTUPINFOW::default();
     let mut process_info = PROCESS_INFORMATION::default();
-    // let dll_bytes = read(inject_dll).expect("Failed to read inject dll!");
     let dll_size = (inject_dll.len() + 1) * 2;
-    // let dll_ptr = dll_bytes.as_ptr();
 
     println!("Creating process...");
 
@@ -108,7 +105,6 @@ unsafe fn start(executable: &String, inject_dll: String) {
 
     println!("Getting module handle...");
 
-    // use getprocaddress
     let kernel32 = GetModuleHandleW(w!("kernel32.dll"));
     let kernel32 = kernel32.unwrap();
 
@@ -160,17 +156,9 @@ unsafe fn start(executable: &String, inject_dll: String) {
     )
     .expect("Failed to create remote thread!");
 
-    let err = WaitForSingleObject(handle, INFINITE);
-
-    if err != NO_ERROR {
+    if WaitForSingleObject(handle, INFINITE) != NO_ERROR {
         println!("Failed to wait for single object!");
         return;
-    }
-
-    let err = GetLastError();
-
-    if err != NO_ERROR {
-        println!("Error: {:?}", err);
     }
 
     println!("Done!");

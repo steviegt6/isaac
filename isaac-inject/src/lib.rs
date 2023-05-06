@@ -1,14 +1,7 @@
-use windows::{
-    w,
-    Win32::{
-        Foundation::{BOOL, HWND, TRUE},
-        UI::WindowsAndMessaging::{MessageBoxW, MESSAGEBOX_STYLE},
-    },
-};
+#[cfg_attr(target_os = "windows", path = "os/windows.rs")]
+#[cfg_attr(target_os = "linux", path = "os/linux.rs")]
+#[cfg_attr(target_os = "macos", path = "os/macos.rs")]
+#[cfg_attr(r#true, path = "os/unknown.rs")]
+mod os;
 
-#[no_mangle]
-pub unsafe extern "system" fn DllMain(_module: usize, _reason: u32, _reserved: usize) -> BOOL {
-    MessageBoxW(HWND(0), w!("test"), w!("test"), MESSAGEBOX_STYLE(0));
-
-    TRUE
-}
+// OS-dependent modules include their relevant entrypoints.
