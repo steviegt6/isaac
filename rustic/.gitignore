@@ -1,8 +1,0 @@
-# Built rust binaries and such.
-target/
-
-# Personal script for building and running.
-run.sh
-
-# File that indicates whether a Lua mod is disabled.
-disable.it
