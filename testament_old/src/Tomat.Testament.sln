@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tomat.Testament.API", "Tomat.Testament.API\Tomat.Testament.API.csproj", "{FAFFB5C9-58DB-4D34-9BE8-43643A5AB46D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tomat.Testament", "Tomat.Testament\Tomat.Testament.csproj", "{F9FD278F-881D-4AF1-95F9-C8E33B508A85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tomat.Testament.Windows", "Tomat.Testament.Windows\Tomat.Testament.Windows.csproj", "{D4A6616F-85C9-48EA-B223-511102D436DD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tomat.Testament.Windows.Lua", "Tomat.Testament.Windows.Lua\Tomat.Testament.Windows.Lua.vcxproj", "{9C72BFB2-F07B-40B2-A113-9AD6169FCCBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAFFB5C9-58DB-4D34-9BE8-43643A5AB46D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAFFB5C9-58DB-4D34-9BE8-43643A5AB46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAFFB5C9-58DB-4D34-9BE8-43643A5AB46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAFFB5C9-58DB-4D34-9BE8-43643A5AB46D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9FD278F-881D-4AF1-95F9-C8E33B508A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9FD278F-881D-4AF1-95F9-C8E33B508A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9FD278F-881D-4AF1-95F9-C8E33B508A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9FD278F-881D-4AF1-95F9-C8E33B508A85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4A6616F-85C9-48EA-B223-511102D436DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4A6616F-85C9-48EA-B223-511102D436DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4A6616F-85C9-48EA-B223-511102D436DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4A6616F-85C9-48EA-B223-511102D436DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C72BFB2-F07B-40B2-A113-9AD6169FCCBC}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{9C72BFB2-F07B-40B2-A113-9AD6169FCCBC}.Debug|Any CPU.Build.0 = Debug|Win32
+		{9C72BFB2-F07B-40B2-A113-9AD6169FCCBC}.Release|Any CPU.ActiveCfg = Release|Win32
+		{9C72BFB2-F07B-40B2-A113-9AD6169FCCBC}.Release|Any CPU.Build.0 = Release|Win32
+	EndGlobalSection
+EndGlobal

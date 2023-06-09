@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Tomat.Testament.API\Tomat.Testament.API.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0"/>
+        <PackageReference Include="Vanara.PInvoke.Kernel32" Version="3.4.15"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="..\Tomat.Testament.Windows.Bootstrapper\target\debug\testament_windows_bootstrapper.dll">
+            <Link>natives/testament_windows_bootstrapper.dll</Link>
+        </EmbeddedResource>
+    </ItemGroup>
+
+</Project>
