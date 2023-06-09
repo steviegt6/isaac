@@ -42,5 +42,5 @@ void initialize_console(const LPCSTR title)
     const HANDLE console_handle = GetStdHandle(STD_INPUT_HANDLE);
     DWORD lp_mode;
     GetConsoleMode(console_handle, &lp_mode);
-    SetConsoleMode(console_handle, ENABLE_EXTENDED_FLAGS | (lp_mode & ~ENABLE_QUICK_EDIT_MODE));
+    SetConsoleMode(console_handle, ENABLE_EXTENDED_FLAGS | lp_mode & ~ENABLE_QUICK_EDIT_MODE);
 }
