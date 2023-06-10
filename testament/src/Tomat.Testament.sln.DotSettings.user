@@ -1,4 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CUsers_005Cxxlen_005CDocuments_005CRepositories_005Csteviegt6_005Cisaac_005Ctestament_005Csrc_005CTomat_002ETestament_002ELua_005Clib_005Ctomat_005Ftestament_005Fhost_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CUsers_005Cxxlen_005CDocuments_005CRepositories_005Csteviegt6_005Cisaac_005Ctestament_005Csrc_005CTomat_002ETestament_002ELua_005Clib_005Ctomat_005Ftestament_005Fhost_002Edll_002Elib/@EntryIndexedValue">True</s:Boolean>
 	<s:Int64 x:Key="/Default/Environment/Hierarchy/Build/BuildTool/MsbuildVersion/@EntryValue">1114112</s:Int64>
 	<s:String x:Key="/Default/Environment/Hierarchy/Build/BuildTool/CustomBuildToolPath/@EntryValue">C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe</s:String>
+	
 	</wpf:ResourceDictionary>

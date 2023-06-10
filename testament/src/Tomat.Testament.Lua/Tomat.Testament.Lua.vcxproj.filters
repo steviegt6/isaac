@@ -218,5 +218,8 @@
     <ClInclude Include="lua\lzio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="host.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

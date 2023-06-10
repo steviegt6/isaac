@@ -1,3 +1,4 @@
-pub extern "C" fn start_clr() {
-    println!("Starting CLR...");
+#[no_mangle]
+pub extern "C" fn host_start_clr() {
+    println!("Starting CLR... (Rust)");
 }
