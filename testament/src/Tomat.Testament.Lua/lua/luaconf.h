@@ -229,20 +229,19 @@
 ** the libraries, you may want to use the following definition (define
 ** LUA_BUILD_AS_DLL to get it).
 */
-//#if defined(LUA_BUILD_AS_DLL)	/* { */
-//
-//#if defined(LUA_CORE) || defined(LUA_LIB)	/* { */
-//#define LUA_API __declspec(dllexport)
-//#else						/* }{ */
-//#define LUA_API __declspec(dllimport)
-//#endif						/* } */
-//
-//#else				/* }{ */
-//
-//#define LUA_API		extern
-//
-//#endif				/* } */
-#define LUA_API extern "C"
+#if defined(LUA_BUILD_AS_DLL)	/* { */
+
+#if defined(LUA_CORE) || defined(LUA_LIB)	/* { */
+#define LUA_API __declspec(dllexport)
+#else						/* }{ */
+#define LUA_API __declspec(dllimport)
+#endif						/* } */
+
+#else				/* }{ */
+
+#define LUA_API		extern
+
+#endif				/* } */
 
 /* more often than not the libs go together with the core */
 #define LUALIB_API	LUA_API
@@ -267,7 +266,7 @@
     defined(__ELF__)		/* { */
 #define LUAI_FUNC	__attribute__((visibility("hidden"))) extern
 #else				/* }{ */
-#define LUAI_FUNC	extern "C"
+#define LUAI_FUNC	extern
 #endif				/* } */
 
 #define LUAI_DDEC	LUAI_FUNC

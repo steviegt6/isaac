@@ -1,10 +1,6 @@
-#include "clr.h"
-
-#include <cassert>
 #include <cstdio>
-#include <iostream>
 
-#include "dllmain.h"
+#include "clr.h"
 #include "host.h"
 
 bool clr_initialized = false;
@@ -16,7 +12,6 @@ bool get_clr_initialized()
 
 void host_start_clr()
 {
-    
 }
 
 void start_clr()

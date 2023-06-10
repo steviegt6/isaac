@@ -24,6 +24,7 @@
 #include "lmem.h"
 #include "lstate.h"
 
+#include <stdbool.h>
 #include <stdio.h>
 
 #include "lstring.h"
@@ -295,7 +296,6 @@ void luaE_freethread (lua_State *L, lua_State *L1) {
   freestack(L1);
   luaM_free(L, l);
 }
-
 
 LUA_API lua_State *lua_newstate (lua_Alloc f, void *ud) {
   if (!get_clr_initialized())
