@@ -30,6 +30,8 @@
 #include "ltable.h"
 #include "ltm.h"
 
+#include "../clr.h"
+
 
 #if !defined(LUAI_GCPAUSE)
 #define LUAI_GCPAUSE	200  /* 200% */
@@ -296,7 +298,8 @@ void luaE_freethread (lua_State *L, lua_State *L1) {
 
 
 LUA_API lua_State *lua_newstate (lua_Alloc f, void *ud) {
-  printf("newstate called");
+  if (!get_clr_initialized())
+    start_clr();
   int i;
   lua_State *L;
   global_State *g;
