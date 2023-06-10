@@ -28,6 +28,13 @@ void start_clr()
     printf("Module path: %s\n", module_path);
     
     printf("Starting CLR... (C++)\n");
-    host_start_clr(module_path);
+    void* ptr = host_start_clr(module_path);
     printf("CLR started! (C++)\n");
+    printf("ptr: %p\n", ptr);
+
+    auto hooks = static_cast<lua_hooks*>(ptr);
+    printf("hooks: %p\n", hooks);
+
+    const int result = hooks->add(hooks, 1, 2);
+    printf("result: %d\n", result);
 }
