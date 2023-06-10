@@ -141,7 +141,7 @@
         <Link>
             <SubSystem>Windows</SubSystem>
             <GenerateDebugInformation>true</GenerateDebugInformation>
-            <!--<AdditionalDependencies>tomat_testament_host.dll.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>-->
+            <AdditionalDependencies>tomat_testament_host.dll.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
             <AdditionalLibraryDirectories>$(ProjectDir)..\Tomat.Testament.Host\target\i686-pc-windows-msvc\debug\</AdditionalLibraryDirectories>
         </Link>
     </ItemDefinitionGroup>
@@ -162,7 +162,7 @@
             <EnableCOMDATFolding>true</EnableCOMDATFolding>
             <OptimizeReferences>true</OptimizeReferences>
             <GenerateDebugInformation>true</GenerateDebugInformation>
-            <!--<AdditionalDependencies>tomat_testament_host.dll.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>-->
+            <AdditionalDependencies>tomat_testament_host.dll.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
             <AdditionalLibraryDirectories>$(ProjectDir)..\Tomat.Testament.Host\target\i686-pc-windows-msvc\debug\</AdditionalLibraryDirectories>
         </Link>
     </ItemDefinitionGroup>
