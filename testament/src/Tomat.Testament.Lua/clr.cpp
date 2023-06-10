@@ -14,6 +14,11 @@ bool get_clr_initialized()
     return clr_initialized;
 }
 
+void host_start_clr()
+{
+    
+}
+
 void start_clr()
 {
     if (get_clr_initialized())

@@ -1,3 +1,3 @@
 #pragma once
 
-extern "C" void host_start_clr();
+/*extern "C"*/ void host_start_clr();

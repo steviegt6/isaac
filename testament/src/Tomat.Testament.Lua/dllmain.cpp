@@ -8,12 +8,12 @@ BOOL APIENTRY DllMain(HMODULE h_module, DWORD ul_reason_for_call, LPVOID lp_rese
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-        /*std::string message = "Hello, world!\n";
-message += "h_module: " + std::to_string(reinterpret_cast<std::uintptr_t>(h_module)) + "\n";
-message += "ul_reason_for_call: " + std::to_string(ul_reason_for_call) + "\n";
-message += "lp_reserved: " + std::to_string(reinterpret_cast<std::uintptr_t>(lp_reserved)) + "\n";
+        std::string message = "Hello, world!\n";
+        message += "h_module: " + std::to_string(reinterpret_cast<std::uintptr_t>(h_module)) + "\n";
+        message += "ul_reason_for_call: " + std::to_string(ul_reason_for_call) + "\n";
+        message += "lp_reserved: " + std::to_string(reinterpret_cast<std::uintptr_t>(lp_reserved)) + "\n";
 
-MessageBoxA(nullptr, message.c_str(), "Tomat.Testament.Lua", MB_OK);*/
+        MessageBoxA(nullptr, message.c_str(), "Tomat.Testament.Lua", MB_OK);
 
         initialize_console("Tomat.Testament");
 
@@ -23,7 +23,7 @@ MessageBoxA(nullptr, message.c_str(), "Tomat.Testament.Lua", MB_OK);*/
         printf("lp_reserved: %p\n", lp_reserved);
         break;
 
-    default: break;
+    //default: break;
     }
 
     return TRUE;
