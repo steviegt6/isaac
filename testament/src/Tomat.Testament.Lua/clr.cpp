@@ -1,7 +1,10 @@
 #include <cstdio>
 
 #include "clr.h"
+
+#include "dllmain.h"
 #include "host.h"
+#include <PathCch.h>
 
 bool clr_initialized = false;
 
@@ -20,7 +23,11 @@ void start_clr()
 
     clr_initialized = true;
 
+    char module_path[MAX_PATH];
+    GetModuleFileNameA(nullptr, module_path, MAX_PATH);
+    printf("Module path: %s\n", module_path);
+    
     printf("Starting CLR... (C++)\n");
-
-    host_start_clr();
+    host_start_clr(module_path);
+    printf("CLR started! (C++)\n");
 }
