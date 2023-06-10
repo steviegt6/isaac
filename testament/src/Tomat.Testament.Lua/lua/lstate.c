@@ -23,6 +23,9 @@
 #include "llex.h"
 #include "lmem.h"
 #include "lstate.h"
+
+#include <stdio.h>
+
 #include "lstring.h"
 #include "ltable.h"
 #include "ltm.h"
@@ -293,6 +296,7 @@ void luaE_freethread (lua_State *L, lua_State *L1) {
 
 
 LUA_API lua_State *lua_newstate (lua_Alloc f, void *ud) {
+  printf("newstate called");
   int i;
   lua_State *L;
   global_State *g;
