@@ -27,11 +27,13 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+#include "lauxlib.h"
 #include "lstring.h"
 #include "ltable.h"
 #include "ltm.h"
 
 #include "../clr.h"
+#include "../ltestamentlib.h"
 
 
 #if !defined(LUAI_GCPAUSE)
@@ -341,6 +343,9 @@ LUA_API lua_State *lua_newstate (lua_Alloc f, void *ud) {
     close_state(L);
     L = NULL;
   }
+  //printf("made new state\n");
+  luaL_requiref(L, LUA_TESTAMENTLIBNAME, luaopen_testament, 1);
+  lua_pop(L, 1);  /* remove lib */
   return L;
 }
 

@@ -13,6 +13,7 @@
     <ItemGroup>
         <ClCompile Include="clr.cpp" />
         <ClCompile Include="dllmain.cpp" />
+        <ClCompile Include="ltestamentlib.c" />
         <ClCompile Include="lua\lapi.c" />
         <ClCompile Include="lua\lauxlib.c" />
         <ClCompile Include="lua\lbaselib.c" />
@@ -55,6 +56,7 @@
         <ClInclude Include="inc.vs\nethost.h" />
         <ClInclude Include="inc\coreclr_delegates.h" />
         <ClInclude Include="inc\hostfxr.h" />
+        <ClInclude Include="ltestamentlib.h" />
         <ClInclude Include="lua\lapi.h" />
         <ClInclude Include="lua\lauxlib.h" />
         <ClInclude Include="lua\lcode.h" />

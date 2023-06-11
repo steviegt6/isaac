@@ -33,6 +33,7 @@
 
 #include "lualib.h"
 #include "lauxlib.h"
+#include "../ltestamentlib.h"
 
 
 /*
