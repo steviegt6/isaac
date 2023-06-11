@@ -52,7 +52,6 @@
     <ItemGroup>
         <ClInclude Include="clr.h" />
         <ClInclude Include="dllmain.h" />
-        <ClInclude Include="host.h" />
         <ClInclude Include="inc.vs\nethost.h" />
         <ClInclude Include="inc\coreclr_delegates.h" />
         <ClInclude Include="inc\hostfxr.h" />
@@ -82,6 +81,11 @@
         <ClInclude Include="lua\lundump.h" />
         <ClInclude Include="lua\lvm.h" />
         <ClInclude Include="lua\lzio.h" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="lib\libnethost.lib" />
+      <Content Include="lib\libnethost.pdb" />
+      <Content Include="lib\nethost.lib" />
     </ItemGroup>
     <PropertyGroup Label="Globals">
         <VCProjectVersion>15.0</VCProjectVersion>
@@ -141,8 +145,8 @@
         <Link>
             <SubSystem>Windows</SubSystem>
             <GenerateDebugInformation>true</GenerateDebugInformation>
-            <AdditionalDependencies>tomat_testament_host.dll.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
-            <AdditionalLibraryDirectories>$(ProjectDir)..\Tomat.Testament.Host\target\i686-pc-windows-msvc\debug\</AdditionalLibraryDirectories>
+            <AdditionalDependencies>libnethost.lib;nethost.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+            <AdditionalLibraryDirectories>$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
         </Link>
     </ItemDefinitionGroup>
     <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
