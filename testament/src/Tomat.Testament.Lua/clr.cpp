@@ -50,10 +50,11 @@ void start_clr()
     util::log::debug("Module directory: %ls\n", module_directory.c_str());
     util::log::debug("Config path: %ls\n", config_path.c_str());
     util::log::debug("Assembly path: %ls\n", assembly_path.c_str());
-    // printf("Type name: %ls\n", type_name);
-    // printf("Method name: %ls\n", method_name);
-    // printf("Starting CLR... (C++)\n");
-    load_hostfxr(); // printf("Load hostfxr: %d\n", load_hostfxr());
+    if (!load_hostfxr())
+    {
+        util::log::error("Failed to load hostfxr!");
+        return;
+    }
 
     FILE* file;
     if (fopen_s(&file, util::char_t_to_char(config_path.c_str()), "r") != 0)
@@ -71,9 +72,6 @@ void start_clr()
     const load_assembly_and_get_function_pointer_fn load_assembly_and_get_function_pointer = get_dotnet_load_assembly(config_path.c_str());
     assert(load_assembly_and_get_function_pointer != nullptr && "Failure: get_dotnet_load_assembly()");
 
-    // printf("Load assembly and get function pointer: %p\n", load_assembly_and_get_function_pointer);
-
-    //component_entry_point_fn initialize = nullptr;
     struct init_args
     {
     };
@@ -91,14 +89,11 @@ void start_clr()
     if (rc != 0 || initialize == nullptr)
     {
         util::log::error("Failed to load assembly and get function pointer: %x\n", rc);
+        return;
     }
-
-    // printf("Initialize: %p\n", initialize);
 
     constexpr init_args args = {};
     initialize(args);
-
-    // printf("CLR started, initialize called! (C++)\n");
 }
 
 bool get_clr_initialized()
@@ -108,7 +103,6 @@ bool get_clr_initialized()
 
 bool load_hostfxr()
 {
-    // Pre-allocate a large buffer for the path to hostfxr
     char_t buffer[MAX_PATH];
     size_t buffer_size = sizeof(buffer) / sizeof(char_t);
     const int rc = get_hostfxr_path(buffer, &buffer_size, nullptr);
@@ -117,22 +111,16 @@ bool load_hostfxr()
 
     util::log::debug("Found hostfxr at: %ls\n", buffer);
 
-    // Load hostfxr and get desired exports
     void* lib = load_library(buffer);
     init_fptr = static_cast<hostfxr_initialize_for_runtime_config_fn>(get_export(lib, "hostfxr_initialize_for_runtime_config")); // NOLINT(clang-diagnostic-microsoft-cast)
     get_delegate_fptr = static_cast<hostfxr_get_runtime_delegate_fn>(get_export(lib, "hostfxr_get_runtime_delegate")); // NOLINT(clang-diagnostic-microsoft-cast)
     close_fptr = static_cast<hostfxr_close_fn>(get_export(lib, "hostfxr_close")); // NOLINT(clang-diagnostic-microsoft-cast)
-
-    // printf("hostfxr_initialize_for_runtime_config: %p\n", init_fptr);
-    // printf("hostfxr_get_runtime_delegate: %p\n", get_delegate_fptr);
-    // printf("hostfxr_close: %p\n", close_fptr);
 
     return lib && init_fptr && get_delegate_fptr && close_fptr;
 }
 
 load_assembly_and_get_function_pointer_fn get_dotnet_load_assembly(const char_t* config_path)
 {
-    // Load .NET Core
     void* load_assembly_and_get_function_pointer = nullptr;
     hostfxr_handle cxt = nullptr;
     int rc = init_fptr(config_path, nullptr, &cxt);
@@ -143,15 +131,13 @@ load_assembly_and_get_function_pointer_fn get_dotnet_load_assembly(const char_t*
         return nullptr;
     }
 
-    // Get the load assembly function pointer
-    rc = get_delegate_fptr(
-        cxt,
-        hdt_load_assembly_and_get_function_pointer,
-        &load_assembly_and_get_function_pointer);
+
+    rc = get_delegate_fptr(cxt, hdt_load_assembly_and_get_function_pointer, &load_assembly_and_get_function_pointer);
 
     if (rc != 0 || load_assembly_and_get_function_pointer == nullptr)
     {
         util::log::error("Get delegate failed: %x\n", rc);
+        return nullptr;
     }
 
     close_fptr(cxt);

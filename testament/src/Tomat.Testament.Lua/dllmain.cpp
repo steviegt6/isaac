@@ -21,11 +21,6 @@ BOOL APIENTRY DllMain(HMODULE, const DWORD ul_reason_for_call, LPVOID)
     {
         initialize_console("Tomat.Testament");
 
-        /*util::log::debug("debug\n");
-        util::log::info("info\n");
-        util::log::warn("warn\n");
-        util::log::error("error\n");*/
-
         util::log::info("Tomat.Testament.Lua (Lua5.3.3r.dll) by Tomat, version %s\n", TOMAT_TESTAMENT_LUA_VERSION);
         util::log::info("This is a fork of Lua and is thus licensed under the MIT License.\n");
         util::log::info("See <https://github.com/steviegt6/isaac> and <https://www.lua.org/> for more information.\n");
@@ -34,11 +29,6 @@ BOOL APIENTRY DllMain(HMODULE, const DWORD ul_reason_for_call, LPVOID)
         util::log::info("Tomat.Testament is free software licensed under the GNU General Public License, version 3.\n");
         util::log::info("See <https://github.com/steviegt6/isaac> for more information.\n");
         util::log::info("\n");
-
-        /*printf("Hello, world!\n");
-        printf("h_module: %p\n", h_module);
-        printf("ul_reason_for_call: %lu\n", ul_reason_for_call);
-        printf("lp_reserved: %p\n", lp_reserved);*/
     }
 
     return TRUE;
