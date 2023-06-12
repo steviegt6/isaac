@@ -11,9 +11,9 @@ using System.Runtime.InteropServices;
 
 namespace Tomat.Testament;
 
-public static class Native {
+internal static class Native {
     [UnmanagedCallersOnly]
-    public static void Initialize() {
-        Console.WriteLine("Initialized called! (C#)");
+    internal static void Initialize() {
+        Console.WriteLine("Initialize called! (C#)");
     }
 }
