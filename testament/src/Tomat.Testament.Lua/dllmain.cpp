@@ -9,10 +9,10 @@ BOOL APIENTRY DllMain(HMODULE h_module, DWORD ul_reason_for_call, LPVOID lp_rese
     {
         initialize_console("Tomat.Testament");
 
-        printf("Hello, world!\n");
+        /*printf("Hello, world!\n");
         printf("h_module: %p\n", h_module);
         printf("ul_reason_for_call: %lu\n", ul_reason_for_call);
-        printf("lp_reserved: %p\n", lp_reserved);
+        printf("lp_reserved: %p\n", lp_reserved);*/
     }
 
     return TRUE;

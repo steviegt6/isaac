@@ -30,18 +30,21 @@ hostfxr_close_fn close_fptr;
 bool load_hostfxr();
 load_assembly_and_get_function_pointer_fn get_dotnet_load_assembly(const char_t* config_path);
 
-char_t* string_to_char_t(std::string str)
+char* char_t_to_char(const char_t* str)
 {
-    const auto chars = new char_t[str.length() + 1];
-    std::copy(str.begin(), str.end(), chars);
-    return chars;
+    const size_t len = wcslen(str) + 1;
+    const auto buffer = new char[len];
+    size_t converted_chars = 0;
+    const unsigned int length = wcstombs_s(&converted_chars, buffer, len, str, _TRUNCATE);
+    assert((length == 0 || length != len) && "Failure: wcstombs_s()");
+    return buffer;
 }
 
 void start_clr()
 {
     if (get_clr_initialized())
     {
-        printf("Attempted to initialize CLR despite it already being initialized!\n");
+        std::cerr << "Attempted to initialize CLR despite it already being initialized!" << std::endl;
         return;
     }
 
@@ -65,10 +68,23 @@ void start_clr()
     printf("Module directory: %ls\n", module_directory.c_str());
     printf("Config path: %ls\n", config_path.c_str());
     printf("Assembly path: %ls\n", assembly_path.c_str());
-    printf("Type name: %ls\n", type_name);
-    printf("Method name: %ls\n", method_name);
-    printf("Starting CLR... (C++)\n");
-    printf("Load hostfxr: %d\n", load_hostfxr());
+    // printf("Type name: %ls\n", type_name);
+    // printf("Method name: %ls\n", method_name);
+    // printf("Starting CLR... (C++)\n");
+    load_hostfxr(); // printf("Load hostfxr: %d\n", load_hostfxr());
+
+    FILE* file;
+    if (fopen_s(&file, char_t_to_char(config_path.c_str()), "r") != 0)
+    {
+        printf("Runtime config path does not exist! (C++)\n");
+        return;
+    }
+
+    if (fopen_s(&file, char_t_to_char(assembly_path.c_str()), "r") != 0)
+    {
+        printf("Assembly path does not exist! (C++)\n");
+        return;
+    }
 
     const load_assembly_and_get_function_pointer_fn load_assembly_and_get_function_pointer = get_dotnet_load_assembly(config_path.c_str());
     assert(load_assembly_and_get_function_pointer != nullptr && "Failure: get_dotnet_load_assembly()");
@@ -98,10 +114,10 @@ void start_clr()
 
     // printf("Initialize: %p\n", initialize);
 
-    init_args args = {};
+    const init_args args = {};
     initialize(args);
 
-    printf("CLR started, initialize called! (C++)\n");
+    // printf("CLR started, initialize called! (C++)\n");
 }
 
 void* load_library(const char_t* path)
