@@ -1,3 +1,13 @@
+<!--
+    This file is part of Tomat.Testament.API, a part of the Testament Project
+    hosted within the mono-repository located at
+    <https://github.com/steviegt6/isaac>.
+    
+    Tomat.Testament.API is released under the GNU Lesser General Public License,
+    version 3. As such, it is subject to the terms written in the `LICENSE-LGPL`
+    file located within the project root.
+-->
+
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>

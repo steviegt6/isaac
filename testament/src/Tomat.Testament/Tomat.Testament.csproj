@@ -1,3 +1,12 @@
+<!--
+    This file is part of Tomat.Testament, a part of the Testament Project hosted
+    within the mono-repository located at <https://github.com/steviegt6/isaac>.
+    
+    Tomat.Testament is released under the GNU General Public License, version 3.
+    As such, it is subject to the terms written in the `LICENSE-GPL` file
+    located within the project root.
+-->
+
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
@@ -11,7 +20,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Tomat.Testament.API\Tomat.Testament.API.csproj" />
+        <ProjectReference Include="..\Tomat.Testament.API\Tomat.Testament.API.csproj"/>
     </ItemGroup>
 
 </Project>
