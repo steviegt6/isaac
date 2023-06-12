@@ -460,7 +460,13 @@ struct lua_Debug {
 
 
 /******************************************************************************
+* Tomat.Testament.Lua is a fork of Lua 5.3.3 designed to be used as an
+* entrypoint into The Binding of Isaac: Rebirth, specifically the Repentance
+* DLC. As such, it is subject to the MIT License below, which has also been
+* reproduced in the `LICENSE-MIT` file located within the repository root.
+*
 * Copyright (C) 1994-2016 Lua.org, PUC-Rio.
+* Copyright (C) 2023 Tomat
 *
 * Permission is hereby granted, free of charge, to any person obtaining
 * a copy of this software and associated documentation files (the
