@@ -15,7 +15,16 @@
 #include "lua/lauxlib.h"
 #include "lua/lua.h"
 
-static int testament_message_box(lua_State* state)
+// As of now, this file goes more or less unused. We do the bare minimum of
+// creating a new library with the name "testament", allowing for users to check
+// if a `testament` object exists within the context of their Lua script.
+// Additional commented out code demonstrates the basics for adding native
+// functions and fields to the library, but is not used in the current
+// implementation.
+
+// This is a simple function that allows a user to create a message box from a
+// lua script.
+/*static int testament_message_box(lua_State* state)
 {
     const int args = lua_gettop(state);
     if (args == 3)
@@ -42,13 +51,21 @@ static int testament_message_box(lua_State* state)
     }
 
     return 0;
-}
+}*/
 
+// Here is where the script is added, with the key being the function name and
+// the value being the function pointer.
+// Note that the last entry in the array must be a NULL entry.
 static const luaL_Reg testamentlib[] = {
-    {"messagebox", testament_message_box},
+    // {"messagebox", testament_message_box},
     {NULL, NULL}
 };
 
+// This is the function that should be called to actually create the library.
+// In our case, we call this in `lua/lstate.c`'s `lua_newstate` function, all
+// the way at the bottom. We do this because TBoI:R calls this function but not
+// the regular function for loading every library, so we need a reliable place
+// to call this function whenever TBoI:R creates a new Lua state.
 LUAMOD_API int luaopen_testament(lua_State* state)
 {
     luaL_newlib(state, testamentlib);

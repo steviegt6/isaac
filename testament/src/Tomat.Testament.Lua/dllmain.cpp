@@ -22,7 +22,7 @@ BOOL APIENTRY DllMain(HMODULE, const DWORD ul_reason_for_call, LPVOID)
         initialize_console("Tomat.Testament");
 
         util::log::info("Tomat.Testament.Lua (Lua5.3.3r.dll) by Tomat, version %s\n", TOMAT_TESTAMENT_LUA_VERSION);
-        util::log::info("This is a fork of Lua and is thus licensed under the MIT License.\n");
+        util::log::info("This is a fork of Lua and thus is licensed under the MIT License.\n");
         util::log::info("See <https://github.com/steviegt6/isaac> and <https://www.lua.org/> for more information.\n");
         util::log::info("\n");
         util::log::info("Tomat.Testament.API is free software licensed under the GNU Lesser General Public License, version 3.\n");
