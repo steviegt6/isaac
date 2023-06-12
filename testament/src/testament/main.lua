@@ -1,3 +1,12 @@
+--[[
+    This file is part of Testament, a part of the Testament Project hosted
+    within the mono-repository located at <https://github.com/steviegt6/isaac>.
+    
+    Testament is released under the GNU General Public License, version 3. As
+    such, it is subject to the terms written in the `LICENSE-GPL` file located
+    within the project root.
+]]
+
 local mod = RegisterMod("Testament", 1)
 local game = Game()
 
