@@ -11,11 +11,9 @@ using System.Runtime.InteropServices;
 
 namespace Tomat.Testament;
 
-public readonly struct InitArgs { }
-
 public static class Native {
     [UnmanagedCallersOnly]
-    public static unsafe void Initialize(InitArgs args) {
+    public static void Initialize() {
         Console.WriteLine("Initialized called! (C#)");
     }
 }

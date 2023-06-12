@@ -72,10 +72,7 @@ void start_clr()
     const load_assembly_and_get_function_pointer_fn load_assembly_and_get_function_pointer = get_dotnet_load_assembly(config_path.c_str());
     assert(load_assembly_and_get_function_pointer != nullptr && "Failure: get_dotnet_load_assembly()");
 
-    struct init_args
-    {
-    };
-    typedef void (CORECLR_DELEGATE_CALLTYPE *custom_entry_point_fn)(init_args args);
+    typedef void (CORECLR_DELEGATE_CALLTYPE *custom_entry_point_fn)();
     custom_entry_point_fn initialize = nullptr;
     const int rc = load_assembly_and_get_function_pointer(
         reinterpret_cast<const char_t*>(assembly_path.c_str()),
@@ -92,8 +89,7 @@ void start_clr()
         return;
     }
 
-    constexpr init_args args = {};
-    initialize(args);
+    initialize();
 }
 
 bool get_clr_initialized()

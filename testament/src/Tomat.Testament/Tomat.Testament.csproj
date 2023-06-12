@@ -15,8 +15,6 @@
         <Nullable>enable</Nullable>
 
         <EnableDynamicLoading>true</EnableDynamicLoading>
-
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
