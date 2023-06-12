@@ -9,12 +9,16 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="../paths.targets"/>
+
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
 
         <EnableDynamicLoading>true</EnableDynamicLoading>
+
+        <OutDir>$(GamePath)</OutDir>
     </PropertyGroup>
 
     <ItemGroup>

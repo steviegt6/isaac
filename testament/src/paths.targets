@@ -1,0 +1,22 @@
+<!--
+    This file is part of the Testament Project hosted within the mono-repository
+    located at <https://github.com/steviegt6/isaac>.
+    
+    This file is released under the GNU General Public License, version 3. As
+    such, it is subject to the terms written in the `LICENSE-GPL` file located
+    within the project root.
+-->
+
+<Project>
+
+    <PropertyGroup>
+        <GamePath Condition="!Exists('$(GamePath)')">$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 250900', 'InstallLocation', null, RegistryView.Registry64, RegistryView.Registry32))</GamePath>
+
+        <_SteamLibraryPath>$([MSBuild]::GetRegistryValueFromView('HKEY_CURRENT_USER\SOFTWARE\Valve\Steam', 'SteamPath', null, RegistryView.Registry32))</_SteamLibraryPath>
+        <GamePath Condition="!Exists('$(GamePath)') AND '$(_SteamLibraryPath)' != ''">$(_SteamLibraryPath)\steamapps\common\The Binding of Isaac Rebirth</GamePath>
+
+        <GamePath Condition="!Exists('$(GamePath)')">C:\Program Files\Steam\steamapps\common\The Binding of Isaac Rebirth</GamePath>
+        <GamePath Condition="!Exists('$(GamePath)')">C:\Program Files (x86)\Steam\steamapps\common\The Binding of Isaac Rebirth</GamePath>
+    </PropertyGroup>
+
+</Project>

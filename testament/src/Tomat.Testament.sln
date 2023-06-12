@@ -9,6 +9,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tomat.Testament.Lua", "Toma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tomat.Testament", "Tomat.Testament\Tomat.Testament.csproj", "{8C1E47DA-FF26-4E2C-AA90-B5FE25DAE14C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{04335762-1D70-49B3-88FA-FA594A979BB4}"
+	ProjectSection(SolutionItems) = preProject
+		paths.targets = paths.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
