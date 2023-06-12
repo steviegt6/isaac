@@ -19,6 +19,8 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
 
         <OutDir>$(GamePath)</OutDir>
+
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>

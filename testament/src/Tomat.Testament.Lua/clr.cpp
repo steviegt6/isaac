@@ -69,10 +69,10 @@ void start_clr()
         return;
     }
 
-    const load_assembly_and_get_function_pointer_fn load_assembly_and_get_function_pointer = get_dotnet_load_assembly(config_path.c_str());
+    const load_assembly_and_get_function_pointer_fn load_assembly_and_get_function_pointer = get_dotnet_load_assembly(config_path.c_str(), module_directory.c_str());
     assert(load_assembly_and_get_function_pointer != nullptr && "Failure: get_dotnet_load_assembly()");
 
-    typedef void (CORECLR_DELEGATE_CALLTYPE *custom_entry_point_fn)();
+    typedef void (CORECLR_DELEGATE_CALLTYPE *custom_entry_point_fn)(const wchar_t* base_directory);
     custom_entry_point_fn initialize = nullptr;
     const int rc = load_assembly_and_get_function_pointer(
         reinterpret_cast<const char_t*>(assembly_path.c_str()),
@@ -89,7 +89,9 @@ void start_clr()
         return;
     }
 
-    initialize();
+    // Newline because it looks prettier with the logging on the .NET end.
+    util::log::debug("\n");
+    initialize(module_directory.c_str());
 }
 
 bool get_clr_initialized()
@@ -111,24 +113,24 @@ bool load_hostfxr()
     init_fptr = static_cast<hostfxr_initialize_for_runtime_config_fn>(get_export(lib, "hostfxr_initialize_for_runtime_config")); // NOLINT(clang-diagnostic-microsoft-cast)
     get_delegate_fptr = static_cast<hostfxr_get_runtime_delegate_fn>(get_export(lib, "hostfxr_get_runtime_delegate")); // NOLINT(clang-diagnostic-microsoft-cast)
     close_fptr = static_cast<hostfxr_close_fn>(get_export(lib, "hostfxr_close")); // NOLINT(clang-diagnostic-microsoft-cast)
+    set_prop_fptr = static_cast<hostfxr_set_runtime_property_value_fn>(get_export(lib, "hostfxr_set_runtime_property_value")); // NOLINT(clang-diagnostic-microsoft-cast)
 
-    return lib && init_fptr && get_delegate_fptr && close_fptr;
+    return lib && init_fptr && get_delegate_fptr && close_fptr && set_prop_fptr;
 }
 
-load_assembly_and_get_function_pointer_fn get_dotnet_load_assembly(const char_t* config_path)
+load_assembly_and_get_function_pointer_fn get_dotnet_load_assembly(const char_t* config_path, const char_t* base_directory)
 {
     void* load_assembly_and_get_function_pointer = nullptr;
-    hostfxr_handle cxt = nullptr;
-    int rc = init_fptr(config_path, nullptr, &cxt);
-    if (rc != 0 || cxt == nullptr)
+    hostfxr_handle ctx = nullptr;
+    int rc = init_fptr(config_path, nullptr, &ctx);
+    if (rc != 0 || ctx == nullptr)
     {
         util::log::error("Failed to load assembly: %x\n", rc);
-        close_fptr(cxt);
+        close_fptr(ctx);
         return nullptr;
     }
 
-
-    rc = get_delegate_fptr(cxt, hdt_load_assembly_and_get_function_pointer, &load_assembly_and_get_function_pointer);
+    rc = get_delegate_fptr(ctx, hdt_load_assembly_and_get_function_pointer, &load_assembly_and_get_function_pointer);
 
     if (rc != 0 || load_assembly_and_get_function_pointer == nullptr)
     {
@@ -136,7 +138,9 @@ load_assembly_and_get_function_pointer_fn get_dotnet_load_assembly(const char_t*
         return nullptr;
     }
 
-    close_fptr(cxt);
+    set_prop_fptr(ctx, L"APP_CONTEXT_BASE_DIRECTORY", base_directory);
+
+    close_fptr(ctx);
     return static_cast<load_assembly_and_get_function_pointer_fn>(load_assembly_and_get_function_pointer); // NOLINT(clang-diagnostic-microsoft-cast)
 }
 
