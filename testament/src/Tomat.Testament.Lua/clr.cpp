@@ -54,12 +54,12 @@ void start_clr()
     module_directory = module_directory.substr(0, module_directory.find_last_of(L"\\/"));
 
     string_t config_path(module_directory);
-    config_path.append(L"\\Tomat.Testament.API.runtimeconfig.json");
+    config_path.append(L"\\Tomat.Testament.runtimeconfig.json");
 
     string_t assembly_path(module_directory);
-    assembly_path.append(L"\\Tomat.Testament.API.dll");
+    assembly_path.append(L"\\Tomat.Testament.dll");
 
-    const auto type_name = L"Tomat.Testament.API.Native, Tomat.Testament.API";
+    const auto type_name = L"Tomat.Testament.Native, Tomat.Testament";
     const auto method_name = L"Initialize";
 
     printf("Module directory: %ls\n", module_directory.c_str());

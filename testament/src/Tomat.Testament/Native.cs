@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Tomat.Testament.API;
+namespace Tomat.Testament;
 
 public readonly struct InitArgs { }
 
