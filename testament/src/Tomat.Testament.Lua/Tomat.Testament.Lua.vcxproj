@@ -49,13 +49,15 @@
         <ClCompile Include="lua\lutf8lib.c" />
         <ClCompile Include="lua\lvm.c" />
         <ClCompile Include="lua\lzio.c" />
+        <ClCompile Include="util\log\log.cpp" />
+        <ClCompile Include="util\util.cpp" />
     </ItemGroup>
     <ItemGroup>
         <ClInclude Include="clr.h" />
         <ClInclude Include="dllmain.h" />
-        <ClInclude Include="inc.vs\nethost.h" />
         <ClInclude Include="inc\coreclr_delegates.h" />
         <ClInclude Include="inc\hostfxr.h" />
+        <ClInclude Include="inc\nethost.h" />
         <ClInclude Include="ltestamentlib.h" />
         <ClInclude Include="lua\lapi.h" />
         <ClInclude Include="lua\lauxlib.h" />
@@ -83,6 +85,9 @@
         <ClInclude Include="lua\lundump.h" />
         <ClInclude Include="lua\lvm.h" />
         <ClInclude Include="lua\lzio.h" />
+        <ClInclude Include="util\constants\constants.h" />
+        <ClInclude Include="util\log\log.h" />
+        <ClInclude Include="util\util.h" />
     </ItemGroup>
     <ItemGroup>
       <Content Include="lib\libnethost.lib" />
@@ -142,7 +147,7 @@
             <PreprocessorDefinitions>WIN32;_DEBUG;CPPDYNAMICLIBRARYTEMPLATE_EXPORTS;_WINDOWS;_USRDLL;LUA_BUILD_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <ConformanceMode>true</ConformanceMode>
             <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-            <AdditionalIncludeDirectories>$(ProjectDir)inc;$(ProjectDir)inc.vs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+            <AdditionalIncludeDirectories>$(ProjectDir)inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
         </ClCompile>
         <Link>
             <SubSystem>Windows</SubSystem>
@@ -162,6 +167,7 @@
             <PreprocessorDefinitions>WIN32;NDEBUG;CPPDYNAMICLIBRARYTEMPLATE_EXPORTS;_WINDOWS;_USRDLL;LUA_BUILD_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
             <ConformanceMode>true</ConformanceMode>
             <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+            <AdditionalIncludeDirectories>$(ProjectDir)inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
         </ClCompile>
         <Link>
             <SubSystem>Windows</SubSystem>

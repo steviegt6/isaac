@@ -2,14 +2,10 @@
 
 #include "ltestamentlib.h"
 
-#include "lua/lprefix.h"
-
-#include "lua/lua.h"
+#include <windows.h>
 
 #include "lua/lauxlib.h"
-#include "lua/lualib.h"
-
-#include <windows.h>
+#include "lua/lua.h"
 
 static int testament_message_box(lua_State* state)
 {
