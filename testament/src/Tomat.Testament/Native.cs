@@ -8,11 +8,13 @@
 
 using System;
 using System.Runtime.InteropServices;
+using JetBrains.Annotations;
 
 namespace Tomat.Testament;
 
 internal static class Native {
     [UnmanagedCallersOnly]
+    [UsedImplicitly(ImplicitUseKindFlags.Access)]
     internal static void Initialize() {
         Console.WriteLine("Initialize called! (C#)");
     }

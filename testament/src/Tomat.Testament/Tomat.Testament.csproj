@@ -21,4 +21,8 @@
         <ProjectReference Include="..\Tomat.Testament.API\Tomat.Testament.API.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2022.3.1"/>
+    </ItemGroup>
+
 </Project>
